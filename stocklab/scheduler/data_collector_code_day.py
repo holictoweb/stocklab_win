@@ -4,13 +4,13 @@ import time
 import inspect
 from multiprocessing import Process
 from datetime import datetime
+import pandas as pd
 
-from apscheduler.schedulers.background import BackgroundScheduler 
-
+#from apscheduler.schedulers.background import BackgroundScheduler 
 
 from stocklab.agent.ebest import EBest
 from stocklab.agent.data import Data
-from stocklab.db_handler.mongodb_handler import MongoDBHandler
+#from stocklab.db_handler.mongodb_handler import MongoDBHandler
 
 
 '''
@@ -20,9 +20,9 @@ python -m stocklab.scheduler.data_collector_code_day
 
 
 ebest = EBest("PROD")
-mongodb = MongoDBHandler()
 ebest.login()
 
+#mongodb = MongoDBHandler()
 
 def collect_code_list():
     
@@ -32,9 +32,13 @@ def collect_code_list():
 
     mongodb.delete_items({}, "stocklab", "code_info")
     mongodb.insert_items(result, "stocklab", "code_info")
-    '''
 
     code_list = mongodb.find_items( {"jnilclose":{"$gt":2000,"$lt":30000} } , "stocklab", "code_info")
+    '''
+    result_code = ebest.get_code_list("ALL")
+    df_result_code = pd.DataFrame(result_code)
+    df_result_code.to_parquet('D:\data\stock_code', compression='GZIP')
+    
     #print(list(code_list)[0])
 
     # pymongo 형 변환 필요 
