@@ -18,7 +18,6 @@ python -m stocklab.scheduler.data_collector_code_day
 
 '''
 
-
 ebest = EBest("PROD")
 ebest.login()
 
@@ -36,17 +35,16 @@ def collect_code_list():
     code_list = mongodb.find_items( {"jnilclose":{"$gt":2000,"$lt":30000} } , "stocklab", "code_info")
     '''
     result_code = ebest.get_code_list("ALL")
-    df_result_code = pd.DataFrame(result_code)
-    df_result_code.to_parquet('D:\data\stock_code', compression='GZIP')
+    #print ( result_code )
+    pdf = pd.DataFrame(result_code)
+    print ( pdf)
+    df_result_code = pdf[ ( pdf.jnilclose> '3000') | ( pdf.jnilclose < '100000')]
+    print ( df_result_code)
+    df_result_code.to_csv('D:/data/stock_code/stock_code.csv', compression ='gzip', mode = 'w+')
+    #df_result_code.to_parquet('D:\\data\\stock_code\\', compression='GZIP')
     
-    #print(list(code_list)[0])
-
     # pymongo 형 변환 필요 
     #db.code_info.find().forEach( function (d) {     d.jnilclose= parseInt(d.jnilclose);     db.code_info.save(d); });
-
-    #거래량
-    mongodb.delete_items({}, "stocklab", "code_prod")
-    mongodb.insert_items(list(code_list), "stocklab", "code_prod")
 
     print(">>>> end code collect....")
 
