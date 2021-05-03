@@ -18,32 +18,35 @@ from stocklab.agent.data import Data
 python -m stocklab.scheduler.data_collector_1m
 '''
 
-print("start collect data")
 ebest = EBest("PROD")
 ebest.login()
 
 #mongodb = MongoDBHandler()
 
 
-def collect_stock_min():
+def collect_stock_min(sdate):
     # >> 날짜별로 조회 
-    
+    '''
     code_list = mongodb.find_items({}, "stocklab", "code_prod")
-
     target_code = set([item["shcode"] for item in code_list])
     today = datetime.today().strftime("%Y%m%d")
-
     # delete data 
     collect_list = mongodb.find_items({"date":today}, "stocklab", "price_min").distinct("code")
+    '''
 
+    pdf = pd.read_csv('D:\data\stock_code\stock_code.csv', encoding='utf-8')
+    today = datetime.today().strftime("%Y%m%d")
+    print(pdf)
+    '''
     for col in collect_list:
         target_code.remove(col)
-    
+    '''
+    target_code = pdf[shcode]
     index = 0
     for code in target_code:
         time.sleep(1)
         #print(">>> code:", code)
-        result_price = ebest.get_price_n_min_by_code("20200101", today, code, tick=None)
+        result_price = ebest.get_price_n_min_by_code(sdate, today, code, tick=None)
         
         df_result_price = pd.DataFrame(result_price)
         df_result_price['shcode'] = code
@@ -55,7 +58,7 @@ def collect_stock_min():
         if len(result_price) > 0:
             
             # df 와 dict 유형 분리
-            df_result_price.to_parquet('D:\data', compression='GZIP')
+            df_result_price.to_csv('D:/data/stock_min/'+ + '', compression='gzip', mode = 'w+')
 
             mongodb.insert_items(dict_result_price, "stocklab", "price_min")
             index = index+1
@@ -67,6 +70,6 @@ if __name__ == '__main__':
     print(">>> code list start")
     #collect_code_list()
     
-    sdate = ''
+    sdate = '20210101'
     collect_stock_min(sdate)
     
