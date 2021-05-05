@@ -74,3 +74,10 @@ pip instll pyspark
   - 설치 및 JAVA_HOME 시스템 변수 설정
 
 - winutil
+  - https://github.com/cdarlint/winutils/tree/master/hadoop-3.2.1/bin winutils.exe 다운로드
+
+```
+# error message 
+21/05/05 18:52:32 WARN Shell: Did not find winutils.exe: {}
+java.io.FileNotFoundException: Could not locate Hadoop executable: c:\programdata\anaconda3\envs\test32\lib\site-packages\pyspark\bin\winutils.exe -see https://wiki.apache.org/hadoop/WindowsProblems
+```
