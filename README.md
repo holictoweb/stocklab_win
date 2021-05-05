@@ -52,3 +52,32 @@ PermissionError: [Errno 13] Permission denied: 'c:\\data'
 
 ## Xing ACE 사용 방법
 
+
+
+
+
+# pyspark 구성 
+### lakehouse 구축을 위해 필요 
+
+- 전체 spark의 기능은 필요 없고 delta lake와 parquet 파티션 저장등의 용도로 사용
+
+```
+pip instll pyspark
+```
+
+### 환경 변수 설정 
+- PATH 지정 
+  - C:\ProgramData\Anaconda3\envs\test32 
+- SPARK_HOME 지정
+  - c:\programdata\anaconda3\envs\test32\lib\site-packages\pyspark
+- open jdk 설치 
+  - 설치 및 JAVA_HOME 시스템 변수 설정
+
+- winutil
+  - https://github.com/cdarlint/winutils/tree/master/hadoop-3.2.1/bin winutils.exe 다운로드
+
+```
+# error message 
+21/05/05 18:52:32 WARN Shell: Did not find winutils.exe: {}
+java.io.FileNotFoundException: Could not locate Hadoop executable: c:\programdata\anaconda3\envs\test32\lib\site-packages\pyspark\bin\winutils.exe -see https://wiki.apache.org/hadoop/WindowsProblems
+```
