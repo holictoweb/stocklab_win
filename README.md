@@ -56,7 +56,7 @@ PermissionError: [Errno 13] Permission denied: 'c:\\data'
 
 
 
-# pyspark 구성 
+# pyspark 구성 ( 단독 설치 ) 
 ### lakehouse 구축을 위해 필요 
 
 - 전체 spark의 기능은 필요 없고 delta lake와 parquet 파티션 저장등의 용도로 사용
@@ -65,10 +65,10 @@ PermissionError: [Errno 13] Permission denied: 'c:\\data'
 pip instll pyspark
 ```
 
-### 환경 변수 설정 
+### 환경 변수 설정
 - PATH 지정 
   - C:\ProgramData\Anaconda3\envs\test32 
-- SPARK_HOME 지정
+- SPARK_HOME 지정 (HADOOP_HOME 도 동일하게 설정 ) 
   - c:\programdata\anaconda3\envs\test32\lib\site-packages\pyspark
 - open jdk 설치 
   - 설치 및 JAVA_HOME 시스템 변수 설정
