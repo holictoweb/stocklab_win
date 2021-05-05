@@ -10,7 +10,7 @@ from stocklab.agent.data import Data
 
 
 import chardet
-
+from pyspark.sql import SparkSession
 
 
 # 2021-05-02 별도 DB 연결은 제거 하고 parquet 파일 기반으로 변경 
@@ -27,6 +27,12 @@ ebest.login()
 
 #mongodb = MongoDBHandler()
 
+def spark_save_parquet(pdf):
+    spark = SparkSession.builder.appName("create data").getOrCreate()
+
+    df = spark.createDataFrame(pdf)  
+    df.show()
+    df.write.format("parquet").partitionBy("").save("d:/data/stock_code/")
 
 def collect_stock_min(sdate):
     # >> 날짜별로 조회 
@@ -42,7 +48,9 @@ def collect_stock_min(sdate):
         result = chardet.detect(f.read())  # or readline if the file is large
 
     # index는 읽지 않는 것으로 지정 해야함.  혹은 저장 시점에 인덱스 정보 변경 
-    pdf = pd.read_csv('D:\data\stock_code\stock_code.csv',  encoding=result['encoding'], index_col=False, compression='gzip')
+    #pdf = pd.read_csv('D:\data\stock_code\stock_code.csv',  encoding=result['encoding'], index_col=False, compression='gzip')
+    
+    
     today = datetime.today().strftime("%Y%m%d")
     print(pdf)
 
