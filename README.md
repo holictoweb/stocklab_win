@@ -75,6 +75,9 @@ pip instll pyspark
 
 - winutil
   - https://github.com/cdarlint/winutils/tree/master/hadoop-3.2.1/bin winutils.exe 다운로드
+  - 다운로드 받은 winutils.exe를 c:\programdata\anaconda3\envs\test32\lib\site-packages\pyspark\bin\winutils.exe 위치로 복사 
+  - 복사한 파일에 대한 권한 확인 필요 
+    - %HADOOP_HOME%\bin\winutils.exe chmod 777 %SOME_TEMP_DIRECTORY%
 
 ```
 # error message 
