@@ -32,9 +32,10 @@ def spark_save_parquet(pdf):
     spark = SparkSession.builder.appName("create data").getOrCreate()
     #spark.sql("create database IF NOT EXISTS stocklab")
 
-    df = spark.createDataFrame(pdf)  #df.show()
-    df.write.format("parquet").mode("overwrite").save("d:/dw/stock_code/")
+    df = spark.createDataFrame(pdf)  
     df.show()
+    df.write.format("parquet").mode("overwrite").save("d:/dw/stock_code/")
+    
 
 
 def collect_code_list():
