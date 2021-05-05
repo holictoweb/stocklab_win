@@ -56,7 +56,7 @@ PermissionError: [Errno 13] Permission denied: 'c:\\data'
 
 
 
-# pyspark 구성 ( 단독 설치 ) 
+# pyspark 구성 ( 단독 설치 windows 2019 server ) 
 ### lakehouse 구축을 위해 필요 
 
 - 전체 spark의 기능은 필요 없고 delta lake와 parquet 파티션 저장등의 용도로 사용
@@ -64,6 +64,10 @@ PermissionError: [Errno 13] Permission denied: 'c:\\data'
 ```
 pip instll pyspark
 ```
+### visual c++ 설치
+https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0
+
+
 
 ### 환경 변수 설정
 - PATH 지정 
