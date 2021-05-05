@@ -9,6 +9,10 @@ from stocklab.agent.ebest import EBest
 from stocklab.agent.data import Data
 
 
+import chardet
+
+
+
 # 2021-05-02 별도 DB 연결은 제거 하고 parquet 파일 기반으로 변경 
 #from stocklab.db_handler.mongodb_handler import MongoDBHandler
 #from stocklab.db_handler.cosmosdb_handler import CosmosDBHandler'
@@ -34,10 +38,13 @@ def collect_stock_min(sdate):
     collect_list = mongodb.find_items({"date":today}, "stocklab", "price_min").distinct("code")
     '''
 
-    pdf = pd.read_csv('D:\data\stock_code\stock_code.csv', encoding='utf-8',sep=',', escapechar='\\')
+    with open('D:\data\stock_code\stock_code.csv', 'rb') as f:
+        result = chardet.detect(f.read())  # or readline if the file is large
+
+    pdf = pd.read_csv('D:\data\stock_code\stock_code.csv', encoding=result['encoding'])
     today = datetime.today().strftime("%Y%m%d")
     print(pdf)
-    
+
     '''
     for col in collect_list:
         target_code.remove(col)
