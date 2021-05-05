@@ -24,17 +24,16 @@ python -m stocklab.scheduler.data_collector_code_day
 ebest = EBest("PROD")
 ebest.login()
 
-spark_dw_path = 'd:/lakehouse/'
-
 #mongodb = MongoDBHandler()
 
-
 def spark_save_parquet(pdf):
-    spark = SparkSession.builder.appName("create data").config("spark.sql.warehouse.dir", spark_dw_path).getOrCreate()
-    spark.sql("create database IF NOT EXISTS stocklab")
+    #spark_dw_path = 'd:/lakehouse/'
+    #spark = SparkSession.builder.appName("create data").config("spark.sql.warehouse.dir", spark_dw_path).enableHiveSupport().getOrCreate()
+    spark = SparkSession.builder.appName("create data").getOrCreate()
+    #spark.sql("create database IF NOT EXISTS stocklab")
 
     df = spark.createDataFrame(pdf)  #df.show()
-    df.write.format("parquet").mode("overwrite").save("d:/data/stock_code/stock_code.parquet")
+    df.write.format("parquet").mode("overwrite").save("d:/dw/stock_code/")
     df.show()
 
 
