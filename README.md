@@ -70,3 +70,7 @@ pip instll pyspark
   - C:\ProgramData\Anaconda3\envs\test32 
 - SPARK_HOME 지정
   - c:\programdata\anaconda3\envs\test32\lib\site-packages\pyspark
+- open jdk 설치 
+  - 설치 및 JAVA_HOME 시스템 변수 설정
+
+- winutil
