@@ -37,7 +37,7 @@ def collect_stock_min(sdate):
     # delete data 
     collect_list = mongodb.find_items({"date":today}, "stocklab", "price_min").distinct("code")
     '''
-
+    spark.read.csv("s3a://mfas-artifact-seoul/glue/tmp/" + file_name2, header = True, inferSchema='false', multiLine=True, quote='"', escape='\\', sep=',',ignoreLeadingWhiteSpace='true',ignoreTrailingWhiteSpace='true',mode='FAILFAST', encoding="UTF-8")
     with open('D:\data\stock_code\stock_code.csv', 'rb') as f:
         result = chardet.detect(f.read())  # or readline if the file is large
 
