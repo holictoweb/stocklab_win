@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import os
 import time
 import inspect
 from multiprocessing import Process
@@ -13,6 +13,9 @@ from stocklab.agent.data import Data
 #from stocklab.db_handler.mongodb_handler import MongoDBHandler
 
 
+from pyspark.sql import SparkSession
+
+
 '''
 python -m stocklab.scheduler.data_collector_code_day
 
@@ -22,6 +25,12 @@ ebest = EBest("PROD")
 ebest.login()
 
 #mongodb = MongoDBHandler()
+
+
+def spark_save_parquet(pdf):
+    spark = SparkSession.builder.appName("create data").getOrCreate()
+    df = spark.createDataFrame(pdf)  #df.show()
+    df.show()
 
 def collect_code_list():
     
@@ -42,14 +51,18 @@ def collect_code_list():
     # 휴장일 경우 jnilclose 데이터가 존재 하지 않음 확인 필요 
     df_result_code = pdf[ ( pdf.jnilclose> '3000') | ( pdf.jnilclose < '100000')]
     print ( df_result_code)
-    df_result_code.to_csv('D:/data/stock_code/stock_code.csv', compression ='gzip', mode = 'w+', encoding='utf-8',line_terminator='\n')
+    
+    spark_save_parquet(df_result_code)
+
+
+    #df_result_code.to_csv('D:/data/stock_code/stock_code.csv', mode = 'w+', encoding='utf-8', index=False, compression='gzip')
     #df_result_code.to_parquet('D:\\data\\stock_code\\', compression='GZIP')
     
     # pymongo 형 변환 필요 
     #db.code_info.find().forEach( function (d) {     d.jnilclose= parseInt(d.jnilclose);     db.code_info.save(d); });
 
     print(">>>> end code collect....")
-    return df_result_code
+
 
 
 if __name__ == '__main__':
