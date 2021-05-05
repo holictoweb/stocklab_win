@@ -49,6 +49,7 @@ def collect_code_list():
     #db.code_info.find().forEach( function (d) {     d.jnilclose= parseInt(d.jnilclose);     db.code_info.save(d); });
 
     print(">>>> end code collect....")
+    return df_result_code
 
 
 if __name__ == '__main__':

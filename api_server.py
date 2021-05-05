@@ -2,7 +2,7 @@ from flask import Flask, request
 from flask_cors import CORS
 from flask_restful import reqparse, abort, Api, Resource, fields, marshal_with
 import datetime 
-from stocklab.db_handler.mongodb_handler import MongoDBHandler
+#from stocklab.db_handler.mongodb_handler import MongoDBHandler
 
 app = Flask(__name__)
 CORS(app)
@@ -75,7 +75,8 @@ mongodb = MongoDBHandler()
 class Code(Resource):
     @marshal_with(code_fields)
     def get(self, code):
-        result = mongodb.find_item({"단축코드":code}, "stocklab", "code_info")
+        #result = mongodb.find_item({"단축코드":code}, "stocklab", "code_info")
+        result = 'test'
         if result is None:
             return {}, 404
         code_info = {}
@@ -88,10 +89,12 @@ class CodeList(Resource):
     def get(self):
         market = request.args.get('market', default="0", type=str)
         if market == "0":
-            results = list(mongodb.find_items({}, "stocklab", "code_info"))
+            result ='codelist'
+            #results = list(mongodb.find_items({}, "stocklab", "code_info"))
         elif market == "1" or market == "2":
-            results = list(mongodb.find_items({"시장구분":market}, "stocklab", "code_info"))
-        
+            #results = list(mongodb.find_items({"시장구분":market}, "stocklab", "code_info"))
+            result ='codelist'
+
         result_list = []
         for item in results:
             code_info = {}
@@ -108,8 +111,10 @@ class Price(Resource):
         default_start_date = datetime.datetime.now() - datetime.timedelta(days=7)
         start_date = request.args.get('start_date', default=default_start_date.strftime("%Y%m%d"), type=str)
         end_date = request.args.get('end_date', default=today, type=str)
-        results = list(mongodb.find_items({"code":code, "날짜": {"$gte":start_date, "$lte":end_date}}, 
+        #results = list(mongodb.find_items({"code":code, "날짜": {"$gte":start_date, "$lte":end_date}}, 
                                             "stocklab", "price_info"))
+        results = ['test', 'price']
+        
         result_object = {}
         price_info_list = []
         for item in results:

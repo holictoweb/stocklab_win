@@ -34,9 +34,10 @@ def collect_stock_min(sdate):
     collect_list = mongodb.find_items({"date":today}, "stocklab", "price_min").distinct("code")
     '''
 
-    pdf = pd.read_csv('D:\data\stock_code\stock_code.csv', encoding='utf-8')
+    pdf = pd.read_csv('D:\data\stock_code\stock_code.csv', encoding='utf-8',sep=',', escapechar='\\')
     today = datetime.today().strftime("%Y%m%d")
     print(pdf)
+    
     '''
     for col in collect_list:
         target_code.remove(col)
