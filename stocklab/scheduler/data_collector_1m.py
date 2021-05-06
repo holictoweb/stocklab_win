@@ -26,14 +26,8 @@ ebest = EBest("PROD")
 ebest.login()
 
 #mongodb = MongoDBHandler()
-
-def spark_save_parquet(pdf):
-    spark = SparkSession.builder.appName("create data").getOrCreate()
-
-    df = spark.createDataFrame(pdf)  
-    df.show()
-    df.write.format("parquet").partitionBy("").save("d:/data/stock_code/")
-
+spark = SparkSession.builder.appName("create data").getOrCreate()
+    
 def collect_stock_min(sdate):
     # >> 날짜별로 조회 
     '''
@@ -44,47 +38,51 @@ def collect_stock_min(sdate):
     collect_list = mongodb.find_items({"date":today}, "stocklab", "price_min").distinct("code")
     '''
     #spark.read.csv("s3a://mfas-artifact-seoul/glue/tmp/" + file_name2, header = True, inferSchema='false', multiLine=True, quote='"', escape='\\', sep=',',ignoreLeadingWhiteSpace='true',ignoreTrailingWhiteSpace='true',mode='FAILFAST', encoding="UTF-8")
-    with open('D:\data\stock_code\stock_code.csv', 'rb') as f:
-        result = chardet.detect(f.read())  # or readline if the file is large
+    #with open('D:\data\stock_code\stock_code.csv', 'rb') as f:
+    #    result = chardet.detect(f.read())  # or readline if the file is large
 
     # index는 읽지 않는 것으로 지정 해야함.  혹은 저장 시점에 인덱스 정보 변경 
     #pdf = pd.read_csv('D:\data\stock_code\stock_code.csv',  encoding=result['encoding'], index_col=False, compression='gzip')
-    
-    
+
+
+
+    df_code = spark.read.format("parquet").load("d:/dw/stock_code") 
+    df_code.show()
     today = datetime.today().strftime("%Y%m%d")
-    print(pdf)
 
-    '''
-    for col in collect_list:
-        target_code.remove(col)
-    '''
-    target_code = pdf['shcode']
-    index = 0
-    for code in target_code:
+    df_code.groupBy
+
+    date_list 
+
+    for df in df_code.collect():
         time.sleep(1)
-        print(">>> code:", code)
-        result_price = ebest.get_price_n_min_by_code(sdate, today, code, tick=None)
+        print(">>> code:", df['shcode'])
+        result_price = ebest.get_price_n_min_by_code(sdate, today, df['shcode'], tick=None)
         
-        df_result_price = pd.DataFrame(result_price)
-        df_result_price['shcode'] = code
-        #print(df_result_price)
-        #dict_result_price = df_result_price.to_dict("records")
+        #df_result_price = pd.DataFrame(result_price)
+        #df_result_price['shcode'] = code
+        
+        df = spark.createDataFrame ( result_price )
+        #df.show()
 
-        #print ( df_result_price)
-        
+        df.write.format('parquet').mode("append").partitionBy('date').save("d:/dw/stock_min")
+
+        '''
         if len(result_price) > 0:
             
             # df 와 dict 유형 분리
-            df_result_price.to_csv('D:/data/stock_min/'+ code +'.csv', compression='gzip', mode = 'w+')
+            ('D:/data/stock_min/'+ code +'.csv', compression='gzip', mode = 'w+')
+            df = spark.createDataFrame(pdf)  
+            df.show()
+            df.write.format("parquet").partitionBy("").save("d:/dw/stock_code/")
+
 
             #mongodb.insert_items(dict_result_price, "stocklab", "price_min")
             index = index+1
             print(index)
-    
-if __name__ == '__main__':
+        '''
 
-    
-    print(">>> code list start")
+if __name__ == '__main__':
     #collect_code_list()
     
     sdate = '20200101'

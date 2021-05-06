@@ -6,7 +6,7 @@ from datetime import datetime
 import time
 
 class EBest:
-    QUERY_LIMIT_10MIN = 1000 
+    QUERY_LIMIT_10MIN = 200 
     LIMIT_SECONDS = 600 #10min
 
     def __init__(self, mode=None):
