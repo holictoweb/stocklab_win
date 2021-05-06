@@ -74,6 +74,7 @@ https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-download
 ```
 C:\ProgramData\Anaconda3\envs\{env_name}
 %JAVA_HOME%\bin 
+%HADOOP_HOME%\bin
 ```
 
 - SPARK_HOME 지정 (HADOOP_HOME 도 동일하게 설정 ) 
@@ -81,7 +82,8 @@ C:\ProgramData\Anaconda3\envs\{env_name}
 - open jdk 설치 
   - 설치 및 JAVA_HOME 시스템 변수 설정
 
-- winutil
+- windows 상에서 실제 파일 생성과 관련된 부분은 hadoop 과 관련이 있어 아래와 같이 hadoop 관련 path 수정이 필요함
+  - winutil
   - https://github.com/cdarlint/winutils/tree/master/hadoop-3.2.1/bin winutils.exe 다운로드
   - 다운로드 받은 winutils.exe를 c:\programdata\anaconda3\envs\test32\lib\site-packages\pyspark\bin\winutils.exe 위치로 복사 
   - 복사한 파일에 대한 권한 확인 필요 
