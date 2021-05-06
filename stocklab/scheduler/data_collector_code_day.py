@@ -12,7 +12,6 @@ from stocklab.agent.ebest import EBest
 from stocklab.agent.data import Data
 #from stocklab.db_handler.mongodb_handler import MongoDBHandler
 
-
 from pyspark.sql import SparkSession
 
 
@@ -29,13 +28,14 @@ ebest.login()
 def spark_save_parquet(pdf):
     #spark_dw_path = 'd:/lakehouse/'
     #spark = SparkSession.builder.appName("create data").config("spark.sql.warehouse.dir", spark_dw_path).enableHiveSupport().getOrCreate()
+    print("Create spark session")
     spark = SparkSession.builder.appName("create data").getOrCreate()
     #spark.sql("create database IF NOT EXISTS stocklab")
 
     df = spark.createDataFrame(pdf)  
     df.show()
     df.write.format("parquet").mode("overwrite").save("d:/dw/stock_code/")
-    
+    #df.write.saveAsTable("test")
 
 
 def collect_code_list():
@@ -44,7 +44,8 @@ def collect_code_list():
     #전체 데이터 수집
     result = ebest.get_code_list("ALL")
 
-    mongodb.delete_items({}, "stocklab", "code_info")
+    mongodb.delete_items({}, "stocklab", "code_info")!1004cjstk
+    
     mongodb.insert_items(result, "stocklab", "code_info")
 
     code_list = mongodb.find_items( {"jnilclose":{"$gt":2000,"$lt":30000} } , "stocklab", "code_info")
