@@ -50,18 +50,19 @@ def collect_stock_min(sdate):
     df_code.show()
     today = datetime.today().strftime("%Y%m%d")
 
+    
     df_code.groupBy
 
-    date_list 
+    
 
-    for df in df_code.collect():
+    for code in df_code.collect():
         time.sleep(1)
-        print(">>> code:", df['shcode'])
-        result_price = ebest.get_price_n_min_by_code(sdate, today, df['shcode'], tick=None)
+        print(">>> code:", code['shcode'])
+        result_price = ebest.get_price_n_min_by_code(sdate, today, code['shcode'], tick=None)
         
         #df_result_price = pd.DataFrame(result_price)
         #df_result_price['shcode'] = code
-        
+        df = df.withColumn('shcode', code['shcode'])
         df = spark.createDataFrame ( result_price )
         #df.show()
 
