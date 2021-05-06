@@ -71,7 +71,11 @@ https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-download
 
 ### 환경 변수 설정
 - PATH 지정 
-  - C:\ProgramData\Anaconda3\envs\test32 
+```
+C:\ProgramData\Anaconda3\envs\{env_name}
+%JAVA_HOME%\bin 
+```
+
 - SPARK_HOME 지정 (HADOOP_HOME 도 동일하게 설정 ) 
   - c:\programdata\anaconda3\envs\test32\lib\site-packages\pyspark
 - open jdk 설치 
