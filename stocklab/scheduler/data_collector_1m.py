@@ -61,7 +61,8 @@ def collect_stock_min(sdate):
         print (sedate)
 
         for code in code_list:
-            time.sleep(1)
+            # spark parquet 처리 시 1초 딜레이는 필요 없는 것으로 보임 
+            #time.sleep(1)
             print("======== code:", code['shcode'])
             result_price = ebest.get_price_n_min_by_code(sedate, sedate, code['shcode'], tick=None)
             
@@ -93,6 +94,6 @@ def collect_stock_min(sdate):
 
 if __name__ == '__main__':
     #collect_code_list()
-    sdate ='20200625'
+    sdate ='20210401'
     collect_stock_min(sdate)
     
