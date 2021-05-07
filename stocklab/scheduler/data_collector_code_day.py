@@ -56,7 +56,8 @@ def collect_code_list():
     print ( pdf)
     
     # 휴장일 경우 jnilclose 데이터가 존재 하지 않음 확인 필요 
-    df_result_code = pdf[ ( pdf.jnilclose> '3000') | ( pdf.jnilclose < '100000')]
+    pdf = pdf[ ( pdf.jnilclose> '3000')]
+    df_result_code = pdf[ ( pdf.jnilclose < '50000')]
     print ( df_result_code)
     
     spark_save_parquet(df_result_code)

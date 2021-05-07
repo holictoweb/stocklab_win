@@ -74,7 +74,7 @@ class EBest:
         while xa_query.tr_run_state == 0:
             waiting_cnt +=1
             if waiting_cnt % 100 == 0 :
-                print("Waiting....", self.xa_session_client.GetLastError())
+                #print("Waiting....", self.xa_session_client.GetLastError())
                 #print("Waiting....")
                 pythoncom.PumpWaitingMessages()
 

@@ -20,7 +20,7 @@ from pyspark.sql.functions import col, lit
 
 
 '''
-python -m stocklab.scheduler.data_collector_1m
+python -m stocklab.scheduler.data_collector_1m_m
 '''
 
 ebest = EBest("PROD")
@@ -74,8 +74,8 @@ def collect_stock_min(sdate):
                 df = df.withColumn('shcode', lit(code['shcode']) )
                 #df.show()
 
-                #df.write.format('parquet').mode("append").partitionBy('date','shcode').save("d:/dw/stock_min")
                 df.write.format('parquet').save("d:/dw/stock_min/date=" + sedate + "/shcode=" +code['shcode'])
+
             '''
             if len(result_price) > 0:
                 
@@ -93,6 +93,6 @@ def collect_stock_min(sdate):
 
 if __name__ == '__main__':
     #collect_code_list()
-    sdate ='20200625'
+    sdate ='20210401'
     collect_stock_min(sdate)
     
