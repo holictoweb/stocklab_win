@@ -34,7 +34,7 @@ def spark_save_parquet(pdf):
 
     df = spark.createDataFrame(pdf)  
     df.show()
-    df.write.format("parquet").mode("overwrite").save("d:/dw/stock_code/")
+    #df.write.format("parquet").mode("overwrite").save("d:/dw/stock_code/")
     #df.write.saveAsTable("test")
 
 

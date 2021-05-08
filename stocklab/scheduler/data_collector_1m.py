@@ -94,6 +94,7 @@ def collect_stock_min(sdate):
 
 if __name__ == '__main__':
     #collect_code_list()
-    sdate ='20210401'
+    print ( ">>> start to collect data .........")
+    sdate ='20210411'
     collect_stock_min(sdate)
     
