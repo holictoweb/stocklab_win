@@ -76,7 +76,7 @@ def collect_stock_min(sdate):
                 #df.show()
 
                 #df.write.format('parquet').mode("append").partitionBy('date','shcode').save("d:/dw/stock_min")
-                df.write.format('parquet').save("d:/dw/stock_min/date=" + sedate + "/shcode=" +code['shcode'])
+                df.write.format('parquet').mode("overwrite").save("d:/dw/stock_min/date=" + sedate + "/shcode=" +code['shcode'])
             '''
             if len(result_price) > 0:
                 
@@ -95,6 +95,6 @@ def collect_stock_min(sdate):
 if __name__ == '__main__':
     #collect_code_list()
     print ( ">>> start to collect data .........")
-    sdate ='20210411'
+    sdate ='20210301'
     collect_stock_min(sdate)
     
