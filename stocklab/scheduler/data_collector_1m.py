@@ -76,7 +76,11 @@ def collect_stock_min(sdate):
                 #df.show()
 
                 #df.write.format('parquet').mode("append").partitionBy('date','shcode').save("d:/dw/stock_min")
-                df.write.format('parquet').mode("overwrite").save("d:/dw/stock_min/date=" + sedate + "/shcode=" +code['shcode'])
+                #df.write.format('parquet').mode("overwrite").save("d:/dw/stock_min/date=" + sedate + "/shcode=" +code['shcode'])
+
+                # 버켓팅 적용 여부에 대해서는 고민이 필요 
+                # 적용 시 실제 spark database에 대한 설정 및 적용이 필요 
+                #df.write.format('parquet').mode("overwrite").save("d:/dw/stock_min/date=" + sedate + "/shcode=" +code['shcode'])
             '''
             if len(result_price) > 0:
                 
@@ -95,6 +99,7 @@ def collect_stock_min(sdate):
 if __name__ == '__main__':
     #collect_code_list()
     print ( ">>> start to collect data .........")
-    sdate ='20210301'
+    sdate ='20210101'
     collect_stock_min(sdate)
     
+    # test 

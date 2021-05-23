@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "stocklab-314602",
+  "private_key_id": "e04314d3ca06e70ea5ad8781e3094176d5a48c06",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQC39r13qVQVYRyi\nPTi3HSk93bB0wNq7poebzCVH4htjrUG863hyiSCPAXYxPrhWQUrParGx/vjAV+eZ\nXCIUFJtae+vxyygbQhi2I1NTXHzomBfgTizJicHSp4MhIbVt81+laRFDTbLRPNZI\nhptFp8T8Eibh+1Ie1AtzOnNmk2+RTXr5dXoqn3ALxgFPSvjTC2jBpddz2TLkQdHE\n6WkW7NH5IKt8Z2cClHVGEDlYaK2RPG0aYvAfh1b/iBqDOT5XHMTRPeVp0ohm0qp5\nzeNySUixWG5ggNRaUGLkRMUEB0TuNl+4MPEdvnVAeTpMAeBhhoQpS1IC1ngVpom5\nmbspiS1ZAgMBAAECggEAMEHF5sdg2rDcSYTExWgdYvCt8pqKZlIjXY+aMfaSl72h\nsnSUZnspMso/3mAlC99Zx/olfds0FoSYqMad2+Wh8QTz2jwgG7JleBXhLEtlKsCG\n9tya7A06bk9p2v2UMbD3ZJUgpaaSo0eRsHm67nU5e6QpVftOye52yHXLQtunFxap\nQE2jkOynofOkRGP+Kq1eUc/la4Xe1Skjytvx39dEZb5VA+eyNjl69GjBqohGiQrZ\nKp2MNks/UR1YqlDurpZO1LU8kf7Zw9KUhzMvYWIPXreVKXVDi9tZt8Vrk3F2i4b6\nQSaV3jpa4Co0usU1pg9s68kdfgaO+tIXjGahE3fgBwKBgQDtFGgv85gSIkAtrmgm\n12yNDVc6HAjouGFneOGkIYeR+09ZmYBK+5uzs30HY29xDE3KNCVDArl1XZJFRAkS\nbcYRshL8rAwqMXK+4DLW0F21rEpvv6UNmG8Wu/0spCS6P2k0pWQRaDqCBD+AQqvT\n+ylRk1dNkH5zKQwKL1NtstZorwKBgQDGpSnSul1kSpvHwoGWjNDEBlqNxo3kfqBz\nh4vk+kNFvUEDlePxgcaMVq4Ouk+gQUa6lYzoIrtCKKAWA16HCYLQ1EeEqY+4p4J6\nL3V4c0oonm0Ri/9Iu3p7HVNB2DJjS8pR4pfB0WcxpLrZTPcB4BM/r8+ekx5LO/jO\nLC7EgGK8dwJ/O0Texx4e5mmpocH4R72TZa/wHpbjo0p1D2ko/99iBRzOuZemexhr\n1IEKwM4bDigFSoe+yQHlW3IJH0fi/Lh0y/e4x3I7mFDEXvOtwgZVZxWrhkRi/wMc\nwpI8uOxQQj+YDZFLcw6bkeV9+pKwYk5oBfzP1pRJCIE6gVFTihkrgQKBgHnJgR7F\nS8TVSTTrt2+J3eSQ0Kvjc9MHH3A1RjuYg+4Z3eZI23uRyRz5d7Vn3LGv06FJVx5r\nTMt/BMb6QdYgqqdFvqNDIe5gJMqsliTG6kyE9PGxF06MQseAby8LUbk3Gk+h0NDv\nhYkWKchYO4hWzPZa37ulDwmpNx2QUQwAeoh5AoGASofbey2Iv8GZIZ8HdDmW0kzw\n5NoVoVblBIjAi27jNJ3d3fC7K3Kgp7wITcLXFsJ6HlRZminu1CZ8dKVzByxkfTwm\nm7jZ9Uc8eRZsH/Hm4UqqrCXGGorzGfNrsAACZWbZSSLUmjuRJmdHNxShiOsyUxEO\n6LKCjg+V7q9CHVMGrHg=\n-----END PRIVATE KEY-----\n",
+  "client_email": "stocklab-account@stocklab-314602.iam.gserviceaccount.com",
+  "client_id": "113894784235307463913",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/stocklab-account%40stocklab-314602.iam.gserviceaccount.com"
+}
